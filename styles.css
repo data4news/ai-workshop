@@ -113,6 +113,14 @@ main:has(> .layout) {
   padding-left: 1.5em;
 }
 
+.note {
+  background-color: #e7f3fe;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+}
+
 .slides-embed {
   position: relative;
   padding-top: 59.27%; /* Google Slides 16:9 frame plus toolbar */
