@@ -1,0 +1,150 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.example-prompt pre {
+  background-color: #f0f0f0;
+  padding: 15px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.example-prompt p {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-left: 3px solid #007bff;
+  font-family: monospace;
+  overflow: auto; /* Ensures long text can be scrolled horizontally */
+  white-space: pre-wrap; /* Keeps the formatting of the prompt but wraps text */
+}
+
+.setup-instructions li {
+  margin-bottom: 20px;
+}
+
+.setup-instructions img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Workshop layout: left-hand index + content. Selectors are scoped under
+   .layout so they also win over the homepage's global nav styles when this
+   page is loaded into data4news.com. */
+.layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+main:has(> .layout) {
+  max-width: 1000px;
+}
+
+.layout .sidebar {
+  flex: 0 0 160px;
+  padding: 15px 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.layout .sidebar ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.layout .sidebar li {
+  margin-bottom: 10px;
+}
+
+.layout .sidebar li:last-child {
+  margin-bottom: 0;
+}
+
+.layout .sidebar a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.layout .sidebar a[aria-current="page"] {
+  color: #000;
+  font-weight: bold;
+}
+
+.layout .content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layout .content ol {
+  padding-left: 1.5em;
+}
+
+.slides-embed {
+  position: relative;
+  padding-top: 59.27%; /* Google Slides 16:9 frame plus toolbar */
+}
+
+.slides-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .layout .sidebar {
+    flex: none;
+  }
+
+  .layout .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .layout .sidebar li {
+    margin-bottom: 0;
+  }
+}
