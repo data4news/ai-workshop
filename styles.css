@@ -194,23 +194,18 @@ main:has(> .layout) {
   }
 }
 
-/* Toggles: body[data-os] and body[data-tool] hide the steps for the other choices */
-body[data-os="mac"] .os-windows,
-body[data-os="windows"] .os-mac,
+/* Dropdowns: body[data-os] and body[data-tool] hide the steps for the other choices */
+body:not([data-os="mac"]) .os-mac,
+body:not([data-os="windows"]) .os-windows,
+body:not([data-os="linux"]) .os-linux,
 body:not([data-tool="dsh"]) .tool-dsh,
 body:not([data-tool="chatgpt"]) .tool-chatgpt,
 body:not([data-tool="claude"]) .tool-claude {
-  display: none;
+  display: none !important;
 }
 
-.code-block pre code.os-mac,
-.code-block pre code.os-windows {
+.code-block pre code[class^="os-"] {
   display: block;
-}
-
-body[data-os="mac"] .code-block pre code.os-windows,
-body[data-os="windows"] .code-block pre code.os-mac {
-  display: none;
 }
 
 .choice-sentence {
