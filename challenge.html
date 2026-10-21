@@ -48,20 +48,21 @@
                     <div class="instructions" data-needs="app os" hidden>
 
                     <details class="step" id="step-1" name="challenge-steps" open>
-                        <summary><h2>Step 1: Get your agent to write <code>polls.py</code></h2></summary>
-                        <p>Get your agent to write a new script, <code>scripts/polls.py</code>, that grabs the most recent polling average for a race from FiftyPlusOne, like this page for the Texas Senate race: <a href="https://fiftyplusone.news/polls/senate/general/texas" target="_blank" rel="noopener noreferrer">fiftyplusone.news/polls/senate/general/texas</a>.</p>
-                        <p>It's up to you what to ask. Your skill is in <code>~/<span data-fill="folder">.agents</span>/skills/candidate-research</code>.</p>
+                        <summary><h2>Step 1: Add polls to your skill</h2></summary>
+                    <p>Your skill is in <code>~/<span data-fill="folder">.agents</span>/skills/candidate-research</code>. It's up to you what to ask your agent, but get it to:</p>
+                    <ol>
+                        <li>
+                            <p>Write a new script, <code>scripts/polls.py</code>, that grabs the most recent polling average for a race from FiftyPlusOne, like this page for the Texas Senate race: <a href="https://fiftyplusone.news/polls/senate/general/texas" target="_blank" rel="noopener noreferrer">fiftyplusone.news/polls/senate/general/texas</a>.</p>
+                        </li>
+                        <li>
+                            <p>Update the instructions in <code>SKILL.md</code> so the skill runs both <code>money.py</code> and <code>polls.py</code> when you ask about a race.</p>
+                        </li>
+                    </ol>
                         <button type="button" class="next-step" data-next="step-2">Next: Step 2 →</button>
                     </details>
 
                     <details class="step" id="step-2" name="challenge-steps">
-                        <summary><h2>Step 2: Update <code>SKILL.md</code></h2></summary>
-                        <p>Get your agent to update the instructions in <code>SKILL.md</code> so the skill runs both <code>money.py</code> and <code>polls.py</code> when you ask about a race.</p>
-                        <button type="button" class="next-step" data-next="step-3">Next: Step 3 →</button>
-                    </details>
-
-                    <details class="step" id="step-3" name="challenge-steps">
-                        <summary><h2>Step 3: Try it</h2></summary>
+                        <summary><h2>Step 2: Try it</h2></summary>
                         <p>Start a new chat and run:</p>
                         <div class="code-block">
 <pre><code class="app-deepseek">/candidate-research Texas Senate Race</code><code class="app-chatgpt">$candidate-research Texas Senate Race</code><code class="app-claude">/candidate-research Texas Senate Race</code></pre>
