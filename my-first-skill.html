@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Skill | AI Club Elections 2026 Workshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/shell.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="layout">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="index.html">Intro</a></li>
+                    <li><a href="setup.html">Setup</a></li>
+                    <li><a href="my-first-skill.html" aria-current="page">My First Skill</a></li>
+                </ul>
+            </nav>
+            <div class="content">
+                <section class="setup-instructions">
+                    <h1>My First Skill</h1>
+                    <p>A <strong>skill</strong> is a set of instructions saved in a file called <code>SKILL.md</code>. DeepSeek Harness loads it whenever you ask for it, so you don't have to paste the same instructions into every chat. Every skill has two parts:</p>
+                    <ul>
+                        <li>A <strong>description</strong> at the top, which tells the agent <em>when</em> to use the skill.</li>
+                        <li>The <strong>instructions</strong> below it, which tell the agent <em>what to do</em>.</li>
+                    </ul>
+                    <p>Let's make a "hello world" skill to see how it works.</p>
+                    <ol>
+                        <li>
+                            <p>Open <strong>Terminal</strong> (press <kbd>⌘</kbd> + <kbd>Space</kbd>, type "Terminal" and press Enter). Paste in everything below and press Enter:</p>
+                            <div class="code-block">
+                                <button type="button" class="copy-button">Copy</button>
+<pre><code>mkdir -p ~/.dsh/skills/hello-world && cat &gt; ~/.dsh/skills/hello-world/SKILL.md &lt;&lt;'EOF'
+---
+name: hello-world
+description: Says hello to the user. Use when the user says hello or wants to test that skills are working.
+---
+
+# Hello World
+
+Reply with exactly this message:
+
+👋 Hello, world! Your first skill is working.
+
+Then, in one sentence, tell the user which file these instructions came from.
+EOF</code></pre>
+                            </div>
+                            <p>This creates a <code>hello-world</code> folder inside <code>~/.dsh/skills</code>, the folder where DeepSeek Harness looks for skills, and saves your <code>SKILL.md</code> file in it.</p>
+                        </li>
+                        <li>
+                            <p>In DeepSeek Harness, start a new chat and type <code>/hello-world</code> (or type <code>/</code> and pick <strong>hello-world</strong> from the list). Press Enter.</p>
+                            <p>You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
+                        </li>
+                        <li>
+                            <p>Now try it without the slash: type <strong>hello!</strong> and press Enter. The agent reads each skill's description, so it should pick up your skill on its own.</p>
+                        </li>
+                        <li>
+                            <p>Make it yours. Open the file in TextEdit by pasting this into Terminal:</p>
+                            <div class="code-block">
+                                <button type="button" class="copy-button">Copy</button>
+<pre><code>open -e ~/.dsh/skills/hello-world/SKILL.md</code></pre>
+                            </div>
+                            <p>Change the message, save the file, and run <code>/hello-world</code> again. There's no need to restart DeepSeek Harness, because it re-reads the file every time the skill is used.</p>
+                        </li>
+                    </ol>
+                    <p class="note">On Windows, make a <code>hello-world</code> folder inside <code>%USERPROFILE%\.dsh\skills</code> and save the part between the two <code>EOF</code> lines as <code>SKILL.md</code> in it.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const code = button.parentElement.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.textContent = 'Copied!';
+                    setTimeout(() => { button.textContent = 'Copy'; }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
