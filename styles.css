@@ -200,7 +200,8 @@ body:not([data-os="windows"]) .os-windows,
 body:not([data-os="linux"]) .os-linux,
 body:not([data-tool="dsh"]) .tool-dsh,
 body:not([data-tool="chatgpt"]) .tool-chatgpt,
-body:not([data-tool="claude"]) .tool-claude {
+body:not([data-tool="claude"]) .tool-claude,
+body:not([data-tool="dsh"]):not([data-tool="chatgpt"]) .tool-agents {
   display: none !important;
 }
 
@@ -281,4 +282,12 @@ details.step summary h2 {
 
 .next-step {
   margin: 10px 0 0;
+}
+
+.footnote {
+  margin-top: 40px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  font-size: 0.85em;
+  color: #777;
 }

@@ -26,7 +26,7 @@
                         <li>The <strong>instructions</strong> below it, which tell the agent <em>what to do</em>.</li>
                     </ul>
                     <p>We're going to make a skill called <strong>Greet User</strong>. When you say hello, it replies with a friendly greeting and tells you which file its instructions came from. It doesn't do anything useful yet, but it's a quick way to check that your AI app can find a skill you wrote yourself.</p>
-                    <p>Each app looks for skills in its own folder, so pick the app you're using and your computer:</p>
+                    <p>Not every app looks for skills in the same folder, so pick the app you're using and your computer:</p>
 
                     <p class="choice-sentence">
                         I'm using
@@ -64,8 +64,7 @@
                             <p>Press <strong>Shift + Command + . (period)</strong> to show hidden folders. Folders whose names start with a dot are hidden on a Mac, and they'll now appear faded.</p>
                         </li>
                         <li>
-                            <p class="tool-dsh">If you see a <code>.agents</code> folder, open it. If not, make one:</p>
-                            <p class="tool-chatgpt">Open the <code>.codex</code> folder. ChatGPT makes it the first time you open the app, so if it isn't there, open ChatGPT once and check again. If it's still missing, make one:</p>
+                            <p class="tool-agents">If you see a <code>.agents</code> folder, open it. If not, make one:</p>
                             <p class="tool-claude">Open the <code>.claude</code> folder. Claude Code makes it the first time you use it, so if it isn't there, open the Code tab in the Claude app once and check again. If it's still missing, make one:</p>
                             <p class="os-mac">Click <strong>File → New Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot). If Finder asks whether you're sure you want a name that begins with a dot, click <strong>Use "."</strong>.</p>
                             <p class="os-windows">Right-click an empty spot, choose <strong>New → Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot).</p>
@@ -89,7 +88,7 @@
                     </details>
 
                     <details class="step" id="step-2" name="skill-steps">
-                        <summary><h2>Step 2: Make a new skill folder inside <code>skills</code></h2></summary>
+                        <summary><h2>Step 2: Make your skill</h2></summary>
                     <ol>
                         <li>
                             <p>Inside <code>skills</code>, make a new folder called <code>greet-user</code>.</p>
@@ -158,6 +157,8 @@ Then, in one sentence, tell the user which file these instructions came from.</c
                     </ol>
                     </details>
                     </div>
+
+                    <p class="footnote">Instructions written by Dhrumil w/ Claude Code</p>
                 </section>
             </div>
         </div>
@@ -165,7 +166,7 @@ Then, in one sentence, tell the user which file these instructions came from.</c
     <script>
         const tools = {
             dsh: { name: 'DeepSeek Harness', app: 'DeepSeek Harness', folder: '.agents' },
-            chatgpt: { name: 'ChatGPT', app: 'ChatGPT', folder: '.codex' },
+            chatgpt: { name: 'ChatGPT', app: 'ChatGPT', folder: '.agents' },
             claude: { name: 'Claude Code', app: 'the Claude app', folder: '.claude' },
         };
         // Steps: one open at a time. The shared `name` does this in newer
