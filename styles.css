@@ -193,3 +193,49 @@ main:has(> .layout) {
     margin-bottom: 0;
   }
 }
+
+/* Mac / Windows toggle: body[data-os] hides the other system's steps */
+body[data-os="mac"] .os-windows,
+body[data-os="windows"] .os-mac {
+  display: none;
+}
+
+.code-block pre code.os-mac,
+.code-block pre code.os-windows {
+  display: block;
+}
+
+body[data-os="mac"] .code-block pre code.os-windows,
+body[data-os="windows"] .code-block pre code.os-mac {
+  display: none;
+}
+
+.os-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 20px;
+}
+
+.os-toggle button {
+  margin: 0;
+  padding: 6px 16px;
+  font-size: 15px;
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.os-toggle button[aria-pressed="true"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.download-link {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+}

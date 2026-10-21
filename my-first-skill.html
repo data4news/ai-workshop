@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="/shell.js" defer></script>
 </head>
-<body>
+<body data-os="mac">
     <main>
         <div class="layout">
             <nav class="sidebar">
@@ -25,15 +25,52 @@
                         <li>A <strong>description</strong> at the top, which tells the agent <em>when</em> to use the skill.</li>
                         <li>The <strong>instructions</strong> below it, which tell the agent <em>what to do</em>.</li>
                     </ul>
-                    <p>Let's make a "hello world" skill to see how it works. You'll do everything inside DeepSeek Harness, by asking the agent to write the skill for you.</p>
+                    <p>Let's make a "hello world" skill to see how it works. DeepSeek Harness looks for skills in a folder called <code>.agents/skills</code> in your home folder, so that's where yours will go.</p>
+
+                    <div class="os-toggle" role="group" aria-label="Choose your computer">
+                        <span>I'm on:</span>
+                        <button type="button" data-os-choice="mac" aria-pressed="true">Mac</button>
+                        <button type="button" data-os-choice="windows" aria-pressed="false">Windows</button>
+                    </div>
+
                     <ol>
                         <li>
-                            <p>In DeepSeek Harness, start a new chat. Copy everything below, paste it into the chat box and press Enter:</p>
+                            <div class="os-mac">
+                                <p>Open <strong>Finder</strong>. In the menu bar, click <strong>Go → Home</strong>.</p>
+                            </div>
+                            <div class="os-windows">
+                                <p>Open <strong>File Explorer</strong>. Click the address bar at the top, type <code>%USERPROFILE%</code> and press Enter. This opens your home folder.</p>
+                            </div>
+                        </li>
+                        <li class="os-mac">
+                            <p>Press <strong>Shift + Command + . (period)</strong> to show hidden folders. Folders whose names start with a dot are hidden on a Mac, and they'll now appear faded.</p>
+                        </li>
+                        <li>
+                            <div class="os-mac">
+                                <p>If you see a <code>.agents</code> folder, open it. If not, click <strong>File → New Folder</strong>, name it <code>.agents</code> (with the dot) and open it. If Finder asks whether you're sure you want a name that begins with a dot, click <strong>Use "."</strong>.</p>
+                            </div>
+                            <div class="os-windows">
+                                <p>If you see a <code>.agents</code> folder, open it. If not, right-click an empty spot, choose <strong>New → Folder</strong>, name it <code>.agents</code> (with the dot) and open it.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Inside <code>.agents</code>, make a new folder called <code>skills</code>. Inside <code>skills</code>, make one called <code>hello-world</code>. (If <code>skills</code> is already there, just open it.)</p>
+                            <p>You should end up with:</p>
                             <div class="code-block">
-                                <button type="button" class="copy-button">Copy</button>
-<pre><code>Create a file at .dsh/skills/hello-world/SKILL.md in this workspace with exactly this content:
-
----
+<pre><code class="os-mac">Home
+└── .agents
+    └── skills
+        └── hello-world</code><code class="os-windows">C:\Users\you
+└── .agents
+    └── skills
+        └── hello-world</code></pre>
+                            </div>
+                        </li>
+                        <li>
+                            <p><a class="download-link" href="skills/hello-world/SKILL.md" download="SKILL.md">Download SKILL.md</a>, then move it from your Downloads folder into the <code>hello-world</code> folder. Make sure it's named exactly <code>SKILL.md</code>, and not something like <code>SKILL (1).md</code>.</p>
+                            <p>Here's what's inside. The part between the two <code>---</code> lines gives the skill its name and description. Everything below it is the instructions.</p>
+                            <div class="code-block">
+<pre><code>---
 name: hello-world
 description: Says hello to the user. Use when the user says hello or wants to test that skills are working.
 ---
@@ -46,22 +83,27 @@ Reply with exactly this message:
 
 Then, in one sentence, tell the user which file these instructions came from.</code></pre>
                             </div>
-                            <p>The agent saves your skill in a <code>.dsh/skills</code> folder inside your workspace, which is one of the places DeepSeek Harness looks for skills. The part between the two <code>---</code> lines gives the skill its name and description. Everything below it is the instructions.</p>
                         </li>
                         <li>
-                            <p>Start another new chat so DeepSeek Harness picks up the new skill. Type <code>/hello-world</code> (or type <code>/</code> and pick <strong>hello-world</strong> from the list) and press Enter.</p>
-                            <p>You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
+                            <div class="os-mac">
+                                <p>Quit DeepSeek Harness (<strong>Command + Q</strong>) and open it again, so it notices your new skill.</p>
+                            </div>
+                            <div class="os-windows">
+                                <p>Close DeepSeek Harness and open it again, so it notices your new skill.</p>
+                            </div>
+                            <p>Start a new chat, type <code>/hello-world</code> (or type <code>/</code> and pick <strong>hello-world</strong> from the list) and press Enter. You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
                         </li>
                         <li>
                             <p>Now try it without the slash: type <strong>hello!</strong> and press Enter. The agent reads each skill's description, so it should pick up your skill on its own.</p>
                         </li>
                         <li>
-                            <p>Make it yours. Ask the agent to change the skill, for example:</p>
-                            <div class="code-block">
-                                <button type="button" class="copy-button">Copy</button>
-<pre><code>In .dsh/skills/hello-world/SKILL.md, change the hello message to greet me in Spanish.</code></pre>
+                            <div class="os-mac">
+                                <p>Make it yours. In Finder, right-click <code>SKILL.md</code> and choose <strong>Open With → TextEdit</strong>.</p>
                             </div>
-                            <p>Then run <code>/hello-world</code> again. DeepSeek Harness re-reads the skill every time it's used, so your change shows up right away.</p>
+                            <div class="os-windows">
+                                <p>Make it yours. In File Explorer, right-click <code>SKILL.md</code> and choose <strong>Open with → Notepad</strong>.</p>
+                            </div>
+                            <p>Change the hello message, save the file, and run <code>/hello-world</code> again. DeepSeek Harness re-reads the skill every time it's used, so your change shows up right away.</p>
                         </li>
                     </ol>
                 </section>
@@ -69,15 +111,17 @@ Then, in one sentence, tell the user which file these instructions came from.</c
         </div>
     </main>
     <script>
-        document.querySelectorAll('.copy-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const code = button.parentElement.querySelector('code').innerText;
-                navigator.clipboard.writeText(code).then(() => {
-                    button.textContent = 'Copied!';
-                    setTimeout(() => { button.textContent = 'Copy'; }, 1500);
-                });
-            });
-        });
+        const osButtons = document.querySelectorAll('[data-os-choice]');
+        function setOs(os) {
+            document.body.dataset.os = os;
+            osButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.osChoice === os)));
+            try { localStorage.setItem('workshop-os', os); } catch (e) {}
+        }
+        osButtons.forEach(b => b.addEventListener('click', () => setOs(b.dataset.osChoice)));
+        try {
+            const saved = localStorage.getItem('workshop-os');
+            if (saved === 'mac' || saved === 'windows') setOs(saved);
+        } catch (e) {}
     </script>
 </body>
 </html>
