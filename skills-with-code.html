@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills with Code | AI Club Elections 2026 Workshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/shell.js" defer></script>
+    <script src="choices.js" defer></script>
+    <script src="steps.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="layout">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="index.html">Intro</a></li>
+                    <li><a href="setup.html">Setup</a></li>
+                    <li><a href="my-first-skill.html">My First Skill</a></li>
+                    <li><a href="skills-with-code.html" aria-current="page">Skills with Code</a></li>
+                </ul>
+            </nav>
+            <div class="content">
+                <section class="setup-instructions">
+                    <h1>Skills with Code</h1>
+                    <p>A skill can come with code. The <code>SKILL.md</code> file tells the agent <em>when</em> to use the skill and <em>how</em> to run the code, and the code does the actual work, exactly the same way every time. That's handy for research you repeat, because the agent can't skip a step or make up a number.</p>
+                    <p>We're going to add a skill called <strong>Candidate Research</strong>. It comes with a short Python script that gets campaign finance totals from the FEC: how much each candidate has raised and spent, and how much cash they have left. You can ask about a whole race, like the Texas Senate race, or about specific candidates, like Ken Paxton and James Talarico.</p>
+                    <p>You'll need the FEC API key from the <a href="setup.html">Setup</a> page.</p>
+
+                    <p class="choice-sentence">
+                        I'm using
+                        <select name="app" data-choice-group="app" autocomplete="off" aria-label="Your AI app" required>
+                            <option value="" selected disabled>choose an app</option>
+                            <option value="deepseek">DeepSeek Harness</option>
+                            <option value="chatgpt">ChatGPT Desktop App</option>
+                            <option value="claude">Claude Code Desktop App</option>
+                        </select>
+                        on
+                        <select name="os" data-choice-group="os" autocomplete="off" aria-label="Your computer" required>
+                            <option value="" selected disabled>choose a computer</option>
+                            <option value="mac">Mac</option>
+                            <option value="windows">Windows</option>
+                            <option value="linux">Linux</option>
+                        </select>
+                    </p>
+                    <p class="choose-prompt" data-prompt="app os">Pick both to see the steps.</p>
+
+                    <div class="instructions" data-needs="app os" hidden>
+
+                    <details class="step" id="step-1" name="code-steps" open>
+                        <summary><h2>Step 1: Add the skill</h2></summary>
+                    <ol>
+                        <li>
+                            <p><a class="download-link" href="skills/candidate-research.zip" download>Download candidate-research.zip</a></p>
+                        </li>
+                        <li>
+                            <p class="os-mac">Open your Downloads folder and double-click the zip file. You'll get a folder called <code>candidate-research</code>. (Your browser may have done this for you already.)</p>
+                            <p class="os-windows">Open your Downloads folder, right-click the zip file and choose <strong>Extract All</strong>, then click <strong>Extract</strong>. You'll get a folder called <code>candidate-research</code>.</p>
+                            <p class="os-linux">Open your Downloads folder, right-click the zip file and choose <strong>Extract Here</strong>. You'll get a folder called <code>candidate-research</code>.</p>
+                        </li>
+                        <li>
+                            <p>Move the <code>candidate-research</code> folder into the <code><span data-fill="folder">.agents</span>/skills</code> folder in your home folder, next to the <code>greet-user</code> skill you made in <a href="my-first-skill.html">My First Skill</a>.</p>
+                            <p>You should end up with:</p>
+                            <div class="code-block">
+<pre><code class="os-mac">Home
+└── <span data-fill="folder">.agents</span>
+    └── skills
+        ├── greet-user
+        └── candidate-research
+            ├── SKILL.md
+            └── scripts
+                └── candidate_totals.py</code><code class="os-windows">C:\Users\you
+└── <span data-fill="folder">.agents</span>
+    └── skills
+        ├── greet-user
+        └── candidate-research
+            ├── SKILL.md
+            └── scripts
+                └── candidate_totals.py</code><code class="os-linux">/home/you
+└── <span data-fill="folder">.agents</span>
+    └── skills
+        ├── greet-user
+        └── candidate-research
+            ├── SKILL.md
+            └── scripts
+                └── candidate_totals.py</code></pre>
+                            </div>
+                        </li>
+                    </ol>
+                        <button type="button" class="next-step" data-next="step-2">Next: Step 2 →</button>
+                    </details>
+
+                    <details class="step" id="step-2" name="code-steps">
+                        <summary><h2>Step 2: Add your FEC API key</h2></summary>
+                    <ol>
+                        <li>
+                            <p class="os-mac">Open the <code>scripts</code> folder, right-click <code>candidate_totals.py</code> and choose <strong>Open With → TextEdit</strong>. (If TextEdit isn't listed, choose <strong>Other…</strong> and pick it.)</p>
+                            <p class="os-windows">Open the <code>scripts</code> folder, right-click <code>candidate_totals.py</code> and choose <strong>Open with → Notepad</strong>. (If Notepad isn't listed, choose <strong>Choose another app</strong> and pick it.)</p>
+                            <p class="os-linux">Open the <code>scripts</code> folder, right-click <code>candidate_totals.py</code> and choose <strong>Open With → Text Editor</strong>.</p>
+                        </li>
+                        <li>
+                            <p>Near the top, find this line:</p>
+                            <div class="code-block">
+<pre><code>API_KEY = "INSERT YOUR API KEY HERE"</code></pre>
+                            </div>
+                            <p>Replace <code>INSERT YOUR API KEY HERE</code> with your FEC API key. Keep the quote marks around it, so it looks like this (with your key instead):</p>
+                            <div class="code-block">
+<pre><code>API_KEY = "a1B2c3D4e5F6g7H8i9J0"</code></pre>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Save the file and close it. While it's open, have a look around: the comments (lines starting with <code>#</code>) explain what each part of the script does.</p>
+                        </li>
+                    </ol>
+                        <button type="button" class="next-step" data-next="step-3">Next: Step 3 →</button>
+                    </details>
+
+                    <details class="step" id="step-3" name="code-steps">
+                        <summary><h2>Step 3: Call the skill</h2></summary>
+                    <ol>
+                        <li>
+                            <p class="os-mac">Quit <span data-fill="app">DeepSeek Harness</span> (<strong>Command + Q</strong>) and open it again, so it notices your new skill.</p>
+                            <p class="os-windows">Close <span data-fill="app">DeepSeek Harness</span> and open it again, so it notices your new skill.</p>
+                            <p class="os-linux">Close <span data-fill="app">DeepSeek Harness</span> and open it again, so it notices your new skill.</p>
+                        </li>
+                        <li>
+                            <p class="app-deepseek">Start a new chat, type <code>/candidate-research</code> followed by your question, and press Enter:</p>
+                            <p class="app-chatgpt">Start a new chat, type <code>$candidate-research</code> followed by your question, and press Enter:</p>
+                            <p class="app-claude">Click <strong>Code</strong> to start a new Claude Code session, type <code>/candidate-research</code> followed by your question, and press Enter:</p>
+                            <div class="code-block">
+<pre><code class="app-deepseek">/candidate-research How much has each candidate in the Texas Senate race raised?</code><code class="app-chatgpt">$candidate-research How much has each candidate in the Texas Senate race raised?</code><code class="app-claude">/candidate-research How much has each candidate in the Texas Senate race raised?</code></pre>
+                            </div>
+                            <p>The agent may ask permission to run the script. It needs the internet to reach the FEC, so allow it. You should get back a table of candidates, from the biggest fundraiser down.</p>
+                        </li>
+                        <li>
+                            <p>Now ask without calling the skill by name. The description in <code>SKILL.md</code> tells the agent when to use it:</p>
+                            <div class="code-block">
+<pre><code>Compare Ken Paxton and James Talarico's fundraising.</code></pre>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Try a race you care about, like your own state's Senate race or your House district. For a House race, include the state and district number, like "the Texas 21st district".</p>
+                        </li>
+                    </ol>
+                    </details>
+
+                    </div>
+
+                    <p class="footnote">Instructions written by Dhrumil w/ Claude Code</p>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
