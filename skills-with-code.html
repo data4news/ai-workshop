@@ -69,12 +69,13 @@ description: Looks up 2026 campaign finance totals (money raised, money spent, c
 # Candidate Research
 
 Get the numbers by running `scripts/money.py`, which is in the same folder as this file. Don't look the numbers up any other way, and don't estimate them.
+
+If the script says the API key is missing or wasn't accepted, stop. Tell the user to open `scripts/money.py` and paste their FEC API key on the `API_KEY` line. Don't edit the key yourself.
 </code></pre>
                             </div>
                             <p>What else should the agent know? For example:</p>
                             <ul>
                                 <li>How to run the script, like <code>python3 scripts/money.py --state TX --office senate</code> for a whole race, or <code>python3 scripts/money.py S6TX00388</code> for one candidate.</li>
-                                <li>What to do if the script says your API key is missing.</li>
                                 <li>How you want the answer to look: a table, a short summary, which numbers to include.</li>
                             </ul>
                             <p class="os-mac">Open <strong>TextEdit</strong> and start a new document. Click <strong>Format → Make Plain Text</strong>, then paste and add your own instructions. Click <strong>File → Save</strong>, name it <code>SKILL.md</code>, save it in the <code>candidate-research</code> folder, and if TextEdit asks about the extension, click <strong>Use .md</strong>.</p>
