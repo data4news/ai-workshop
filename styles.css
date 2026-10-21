@@ -158,14 +158,6 @@ main:has(> .layout) {
   font-size: 14px;
 }
 
-kbd {
-  border: 1px solid #ccc;
-  border-bottom-width: 2px;
-  border-radius: 3px;
-  padding: 0 4px;
-  font-size: 0.9em;
-}
-
 .slides-embed {
   position: relative;
   padding-top: 59.27%; /* Google Slides 16:9 frame plus toolbar */

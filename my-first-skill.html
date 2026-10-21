@@ -25,13 +25,14 @@
                         <li>A <strong>description</strong> at the top, which tells the agent <em>when</em> to use the skill.</li>
                         <li>The <strong>instructions</strong> below it, which tell the agent <em>what to do</em>.</li>
                     </ul>
-                    <p>Let's make a "hello world" skill to see how it works.</p>
+                    <p>Let's make a "hello world" skill to see how it works. You'll do everything inside DeepSeek Harness, by asking the agent to write the skill for you.</p>
                     <ol>
                         <li>
-                            <p>Open <strong>Terminal</strong> (press <kbd>⌘</kbd> + <kbd>Space</kbd>, type "Terminal" and press Enter). Paste in everything below and press Enter:</p>
+                            <p>In DeepSeek Harness, start a new chat. Copy everything below, paste it into the chat box and press Enter:</p>
                             <div class="code-block">
                                 <button type="button" class="copy-button">Copy</button>
-<pre><code>mkdir -p ~/.dsh/skills/hello-world && cat &gt; ~/.dsh/skills/hello-world/SKILL.md &lt;&lt;'EOF'
+<pre><code>Create a file at .dsh/skills/hello-world/SKILL.md in this workspace with exactly this content:
+
 ---
 name: hello-world
 description: Says hello to the user. Use when the user says hello or wants to test that skills are working.
@@ -43,28 +44,26 @@ Reply with exactly this message:
 
 👋 Hello, world! Your first skill is working.
 
-Then, in one sentence, tell the user which file these instructions came from.
-EOF</code></pre>
+Then, in one sentence, tell the user which file these instructions came from.</code></pre>
                             </div>
-                            <p>This creates a <code>hello-world</code> folder inside <code>~/.dsh/skills</code>, the folder where DeepSeek Harness looks for skills, and saves your <code>SKILL.md</code> file in it.</p>
+                            <p>The agent saves your skill in a <code>.dsh/skills</code> folder inside your workspace, which is one of the places DeepSeek Harness looks for skills. The part between the two <code>---</code> lines gives the skill its name and description. Everything below it is the instructions.</p>
                         </li>
                         <li>
-                            <p>In DeepSeek Harness, start a new chat and type <code>/hello-world</code> (or type <code>/</code> and pick <strong>hello-world</strong> from the list). Press Enter.</p>
+                            <p>Start another new chat so DeepSeek Harness picks up the new skill. Type <code>/hello-world</code> (or type <code>/</code> and pick <strong>hello-world</strong> from the list) and press Enter.</p>
                             <p>You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
                         </li>
                         <li>
                             <p>Now try it without the slash: type <strong>hello!</strong> and press Enter. The agent reads each skill's description, so it should pick up your skill on its own.</p>
                         </li>
                         <li>
-                            <p>Make it yours. Open the file in TextEdit by pasting this into Terminal:</p>
+                            <p>Make it yours. Ask the agent to change the skill, for example:</p>
                             <div class="code-block">
                                 <button type="button" class="copy-button">Copy</button>
-<pre><code>open -e ~/.dsh/skills/hello-world/SKILL.md</code></pre>
+<pre><code>In .dsh/skills/hello-world/SKILL.md, change the hello message to greet me in Spanish.</code></pre>
                             </div>
-                            <p>Change the message, save the file, and run <code>/hello-world</code> again. There's no need to restart DeepSeek Harness, because it re-reads the file every time the skill is used.</p>
+                            <p>Then run <code>/hello-world</code> again. DeepSeek Harness re-reads the skill every time it's used, so your change shows up right away.</p>
                         </li>
                     </ol>
-                    <p class="note">On Windows, make a <code>hello-world</code> folder inside <code>%USERPROFILE%\.dsh\skills</code> and save the part between the two <code>EOF</code> lines as <code>SKILL.md</code> in it.</p>
                 </section>
             </div>
         </div>
