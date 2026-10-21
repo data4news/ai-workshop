@@ -3,12 +3,12 @@ Get campaign finance totals for 2026 federal candidates from the FEC.
 
 You can look up a whole race:
 
-    python3 candidate_totals.py --state TX --office senate
-    python3 candidate_totals.py --state TX --office house --district 21
+    python3 money.py --state TX --office senate
+    python3 money.py --state TX --office house --district 21
 
 Or specific candidates, using their FEC candidate IDs:
 
-    python3 candidate_totals.py S6TX00388 S6TX00479
+    python3 money.py S6TX00388 S6TX00479
 
 Run it with no arguments to get the default candidates listed below.
 
@@ -63,7 +63,7 @@ def fec_get(path, params):
     except urllib.error.HTTPError as error:
         # 403 means the FEC didn't accept the key; 429 means too many requests.
         if error.code == 403:
-            stop("The FEC didn't accept the API key. Check the API_KEY line in candidate_totals.py.")
+            stop("The FEC didn't accept the API key. Check the API_KEY line in money.py.")
         if error.code == 429:
             stop("Too many requests to the FEC. Wait a minute and try again.")
         stop(f"The FEC API returned an error ({error.code}).")
@@ -164,7 +164,7 @@ def stop(message):
 
 def main():
     if API_KEY == "INSERT YOUR API KEY HERE":
-        stop("Add your FEC API key first: open candidate_totals.py and paste it on the API_KEY line.")
+        stop("Add your FEC API key first: open money.py and paste it on the API_KEY line.")
 
     parser = argparse.ArgumentParser(description="Get FEC campaign finance totals for 2026 candidates.")
     parser.add_argument("candidate_ids", nargs="*", help="FEC candidate IDs, like S6TX00388")

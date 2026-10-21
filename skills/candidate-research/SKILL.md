@@ -5,7 +5,7 @@ description: Looks up 2026 campaign finance totals (money raised, money spent, c
 
 # Candidate Research
 
-Get the numbers by running `scripts/candidate_totals.py`, which is in the same folder as this file. Don't look the numbers up any other way, and don't estimate them.
+Get the numbers by running `scripts/money.py`, which is in the same folder as this file. Don't look the numbers up any other way, and don't estimate them.
 
 ## Steps
 
@@ -14,11 +14,11 @@ Get the numbers by running `scripts/candidate_totals.py`, which is in the same f
    - **Specific candidates**: you need their FEC candidate IDs. If the user doesn't name anyone, use the defaults in the script (Ken Paxton and James Talarico). If you don't know a candidate's ID, look up their race first and take the ID from those results.
 
 2. Run the script from this skill's folder. Use `python3`, or `python` if `python3` isn't available.
-   - Whole race: `python3 scripts/candidate_totals.py --state TX --office senate`
-   - House race: `python3 scripts/candidate_totals.py --state TX --office house --district 21`
-   - Specific candidates: `python3 scripts/candidate_totals.py S6TX00388 S6TX00479`
+   - Whole race: `python3 scripts/money.py --state TX --office senate`
+   - House race: `python3 scripts/money.py --state TX --office house --district 21`
+   - Specific candidates: `python3 scripts/money.py S6TX00388 S6TX00479`
 
-3. If the script says the API key is missing or wasn't accepted, stop. Tell the user to open `scripts/candidate_totals.py` and paste their FEC API key on the `API_KEY` line (the workshop's Setup page explains how to get one). Don't edit the key yourself.
+3. If the script says the API key is missing or wasn't accepted, stop. Tell the user to open `scripts/money.py` and paste their FEC API key on the `API_KEY` line (the workshop's Setup page explains how to get one). Don't edit the key yourself.
 
 4. Reply with:
    - A table with each candidate's name, party, money raised, money spent, cash on hand and the "through" date.
