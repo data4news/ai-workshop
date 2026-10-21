@@ -194,9 +194,12 @@ main:has(> .layout) {
   }
 }
 
-/* Mac / Windows toggle: body[data-os] hides the other system's steps */
+/* Toggles: body[data-os] and body[data-tool] hide the steps for the other choices */
 body[data-os="mac"] .os-windows,
-body[data-os="windows"] .os-mac {
+body[data-os="windows"] .os-mac,
+body:not([data-tool="dsh"]) .tool-dsh,
+body:not([data-tool="chatgpt"]) .tool-chatgpt,
+body:not([data-tool="claude"]) .tool-claude {
   display: none;
 }
 
@@ -210,25 +213,25 @@ body[data-os="windows"] .code-block pre code.os-mac {
   display: none;
 }
 
-.os-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 10px 0 20px;
+.choice-sentence {
+  font-size: 1.15em;
+  line-height: 2.2;
 }
 
-.os-toggle button {
-  margin: 0;
-  padding: 6px 16px;
-  font-size: 15px;
+.choice-sentence select {
+  font: inherit;
+  font-size: 0.95em;
+  padding: 4px 8px;
+  margin: 0 4px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
   background-color: #fff;
   color: #007bff;
-  border: 1px solid #007bff;
 }
 
-.os-toggle button[aria-pressed="true"] {
-  background-color: #007bff;
-  color: #fff;
+.choose-prompt {
+  color: #777;
+  font-style: italic;
 }
 
 .download-link {
@@ -238,4 +241,9 @@ body[data-os="windows"] .code-block pre code.os-mac {
   padding: 6px 14px;
   border-radius: 5px;
   text-decoration: none;
+}
+
+.setup-instructions h2 {
+  margin-top: 35px;
+  margin-bottom: 10px;
 }

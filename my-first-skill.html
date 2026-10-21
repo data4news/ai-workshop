@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="/shell.js" defer></script>
 </head>
-<body data-os="mac">
+<body>
     <main>
         <div class="layout">
             <nav class="sidebar">
@@ -20,55 +20,75 @@
             <div class="content">
                 <section class="setup-instructions">
                     <h1>My First Skill</h1>
-                    <p>A <strong>skill</strong> is a set of instructions saved in a file called <code>SKILL.md</code>. DeepSeek Harness loads it whenever you ask for it, so you don't have to paste the same instructions into every chat. Every skill has two parts:</p>
+                    <p>A <strong>skill</strong> is a set of instructions saved in a file called <code>SKILL.md</code>. Your AI app loads it whenever you ask for it, so you don't have to paste the same instructions into every chat. Every skill has two parts:</p>
                     <ul>
                         <li>A <strong>description</strong> at the top, which tells the agent <em>when</em> to use the skill.</li>
                         <li>The <strong>instructions</strong> below it, which tell the agent <em>what to do</em>.</li>
                     </ul>
-                    <p>Let's make a "hello world" skill to see how it works. DeepSeek Harness looks for skills in a folder called <code>.agents/skills</code> in your home folder, so that's where yours will go.</p>
+                    <p>We're going to make a skill called <strong>Greet User</strong>. When you say hello, it replies with a friendly greeting and tells you which file its instructions came from. It doesn't do anything useful yet, but it's a quick way to check that your AI app can find a skill you wrote yourself.</p>
+                    <p>Each app looks for skills in its own folder, so pick the app you're using and your computer:</p>
 
-                    <div class="os-toggle" role="group" aria-label="Choose your computer">
-                        <span>I'm on:</span>
-                        <button type="button" data-os-choice="mac" aria-pressed="true">Mac</button>
-                        <button type="button" data-os-choice="windows" aria-pressed="false">Windows</button>
-                    </div>
+                    <p class="choice-sentence">
+                        I'm using
+                        <select data-choice-group="tool" aria-label="Your AI app">
+                            <option value="" selected disabled>choose an app</option>
+                            <option value="dsh">DeepSeek Harness</option>
+                            <option value="chatgpt">ChatGPT Desktop App</option>
+                            <option value="claude">Claude Code Desktop App</option>
+                        </select>
+                        on
+                        <select data-choice-group="os" aria-label="Your computer">
+                            <option value="" selected disabled>choose a computer</option>
+                            <option value="mac">Mac</option>
+                            <option value="windows">Windows</option>
+                        </select>
+                    </p>
+                    <p class="choose-prompt">Pick both to see the steps.</p>
 
+                    <div class="instructions" hidden>
+                    <p>Skills for <span data-fill="name">DeepSeek Harness</span> go in <code><span data-fill="folder">.agents</span>/skills</code> in your home folder, so that's where yours will go.</p>
+
+                    <h2>Make the <code data-fill="folder">.agents</code> folder</h2>
                     <ol>
                         <li>
-                            <div class="os-mac">
-                                <p>Open <strong>Finder</strong>. In the menu bar, click <strong>Go → Home</strong>.</p>
-                            </div>
-                            <div class="os-windows">
-                                <p>Open <strong>File Explorer</strong>. Click the address bar at the top, type <code>%USERPROFILE%</code> and press Enter. This opens your home folder.</p>
-                            </div>
+                            <p class="os-mac">Open <strong>Finder</strong>. In the menu bar, click <strong>Go → Home</strong>.</p>
+                            <p class="os-windows">Open <strong>File Explorer</strong>. Click the address bar at the top, type <code>%USERPROFILE%</code> and press Enter. This opens your home folder.</p>
                         </li>
                         <li class="os-mac">
                             <p>Press <strong>Shift + Command + . (period)</strong> to show hidden folders. Folders whose names start with a dot are hidden on a Mac, and they'll now appear faded.</p>
                         </li>
                         <li>
-                            <div class="os-mac">
-                                <p>If you see a <code>.agents</code> folder, open it. If not, click <strong>File → New Folder</strong>, name it <code>.agents</code> (with the dot) and open it. If Finder asks whether you're sure you want a name that begins with a dot, click <strong>Use "."</strong>.</p>
-                            </div>
-                            <div class="os-windows">
-                                <p>If you see a <code>.agents</code> folder, open it. If not, right-click an empty spot, choose <strong>New → Folder</strong>, name it <code>.agents</code> (with the dot) and open it.</p>
-                            </div>
+                            <p class="tool-dsh">If you see a <code>.agents</code> folder, open it. If not, make one:</p>
+                            <p class="tool-chatgpt">Open the <code>.codex</code> folder. ChatGPT makes it the first time you open the app, so if it isn't there, open ChatGPT once and check again. If it's still missing, make one:</p>
+                            <p class="tool-claude">Open the <code>.claude</code> folder. Claude Code makes it the first time you use it, so if it isn't there, open the Code tab in the Claude app once and check again. If it's still missing, make one:</p>
+                            <p class="os-mac">Click <strong>File → New Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot). If Finder asks whether you're sure you want a name that begins with a dot, click <strong>Use "."</strong>.</p>
+                            <p class="os-windows">Right-click an empty spot, choose <strong>New → Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot).</p>
                         </li>
                         <li>
-                            <p>Inside <code>.agents</code>, make a new folder called <code>skills</code>. Inside <code>skills</code>, make one called <code>greet-user</code>. (If <code>skills</code> is already there, just open it.)</p>
-                            <p>You should end up with:</p>
-                            <div class="code-block">
-<pre><code class="os-mac">Home
-└── .agents
-    └── skills
-        └── greet-user</code><code class="os-windows">C:\Users\you
-└── .agents
-    └── skills
-        └── greet-user</code></pre>
-                            </div>
+                            <p>Inside <code data-fill="folder">.agents</code>, open the <code>skills</code> folder, or make one if it isn't there.</p>
+                        </li>
+                    </ol>
+
+                    <h2>Add the skill</h2>
+                    <ol>
+                        <li>
+                            <p>Inside <code>skills</code>, make a new folder called <code>greet-user</code>.</p>
                         </li>
                         <li>
                             <p><a class="download-link" href="skills/greet-user/SKILL.md" download="SKILL.md">Download SKILL.md</a>, then move it from your Downloads folder into the <code>greet-user</code> folder. Make sure it's named exactly <code>SKILL.md</code>, and not something like <code>SKILL (1).md</code>.</p>
-                            <p>Here's what's inside. The part between the two <code>---</code> lines gives the skill its name and description. Everything below it is the instructions.</p>
+                            <p>You should end up with:</p>
+                            <div class="code-block">
+<pre><code class="os-mac">Home
+└── <span data-fill="folder">.agents</span>
+    └── skills
+        └── greet-user
+            └── SKILL.md</code><code class="os-windows">C:\Users\you
+└── <span data-fill="folder">.agents</span>
+    └── skills
+        └── greet-user
+            └── SKILL.md</code></pre>
+                            </div>
+                            <p>Here's what's inside <code>SKILL.md</code>. The part between the two <code>---</code> lines gives the skill its name and description. Everything below it is the instructions.</p>
                             <div class="code-block">
 <pre><code>---
 name: greet-user
@@ -84,44 +104,71 @@ Reply with exactly this message:
 Then, in one sentence, tell the user which file these instructions came from.</code></pre>
                             </div>
                         </li>
+                    </ol>
+
+                    <h2>Call the skill</h2>
+                    <ol>
                         <li>
-                            <div class="os-mac">
-                                <p>Quit DeepSeek Harness (<strong>Command + Q</strong>) and open it again, so it notices your new skill.</p>
-                            </div>
-                            <div class="os-windows">
-                                <p>Close DeepSeek Harness and open it again, so it notices your new skill.</p>
-                            </div>
-                            <p>Start a new chat, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter. You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
+                            <p class="os-mac">Quit <span data-fill="app">DeepSeek Harness</span> (<strong>Command + Q</strong>) and open it again, so it notices your new skill.</p>
+                            <p class="os-windows">Close <span data-fill="app">DeepSeek Harness</span> and open it again, so it notices your new skill.</p>
                         </li>
                         <li>
-                            <p>Now try it without the slash: type <strong>hello!</strong> and press Enter. The agent reads each skill's description, so it should pick up your skill on its own.</p>
+                            <p class="tool-dsh">Start a new chat, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter.</p>
+                            <p class="tool-chatgpt">Start a new chat, type <code>$greet-user</code> and press Enter. In ChatGPT, you call a skill by name with a <code>$</code> in front of it.</p>
+                            <p class="tool-claude">Click <strong>Code</strong> to start a new Claude Code session, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter.</p>
+                            <p>You should get the hello world message back, along with the file it came from.</p>
                         </li>
                         <li>
-                            <div class="os-mac">
-                                <p>Make it yours. In Finder, right-click <code>SKILL.md</code> and choose <strong>Open With → TextEdit</strong>.</p>
-                            </div>
-                            <div class="os-windows">
-                                <p>Make it yours. In File Explorer, right-click <code>SKILL.md</code> and choose <strong>Open with → Notepad</strong>.</p>
-                            </div>
-                            <p>Change the hello message, save the file, and run <code>/greet-user</code> again. DeepSeek Harness re-reads the skill every time it's used, so your change shows up right away.</p>
+                            <p>Now try it without calling it by name: type <strong>hello!</strong> and press Enter. The agent reads each skill's description, so it should pick up your skill on its own.</p>
+                        </li>
+                        <li>
+                            <p class="os-mac">Make it yours. In Finder, right-click <code>SKILL.md</code> and choose <strong>Open With → TextEdit</strong>.</p>
+                            <p class="os-windows">Make it yours. In File Explorer, right-click <code>SKILL.md</code> and choose <strong>Open with → Notepad</strong>.</p>
+                            <p>Change the hello message, save the file, and run the skill again. If your change doesn't show up, start a new chat.</p>
                         </li>
                     </ol>
+                    </div>
                 </section>
             </div>
         </div>
     </main>
     <script>
-        const osButtons = document.querySelectorAll('[data-os-choice]');
-        function setOs(os) {
-            document.body.dataset.os = os;
-            osButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.osChoice === os)));
-            try { localStorage.setItem('workshop-os', os); } catch (e) {}
+        const tools = {
+            dsh: { name: 'DeepSeek Harness', app: 'DeepSeek Harness', folder: '.agents' },
+            chatgpt: { name: 'ChatGPT', app: 'ChatGPT', folder: '.codex' },
+            claude: { name: 'Claude Code', app: 'the Claude app', folder: '.claude' },
+        };
+        const selects = document.querySelectorAll('select[data-choice-group]');
+        const instructions = document.querySelector('.instructions');
+        const prompt = document.querySelector('.choose-prompt');
+
+        function update() {
+            selects.forEach(select => {
+                const group = select.dataset.choiceGroup;
+                if (select.value) {
+                    document.body.dataset[group] = select.value;
+                    try { localStorage.setItem(`workshop-${group}`, select.value); } catch (e) {}
+                }
+            });
+            const tool = tools[document.body.dataset.tool];
+            if (tool) {
+                document.querySelectorAll('[data-fill]').forEach(el => {
+                    el.textContent = tool[el.dataset.fill];
+                });
+            }
+            const ready = [...selects].every(select => select.value);
+            instructions.hidden = !ready;
+            prompt.hidden = ready;
         }
-        osButtons.forEach(b => b.addEventListener('click', () => setOs(b.dataset.osChoice)));
-        try {
-            const saved = localStorage.getItem('workshop-os');
-            if (saved === 'mac' || saved === 'windows') setOs(saved);
-        } catch (e) {}
+
+        selects.forEach(select => {
+            try {
+                const saved = localStorage.getItem(`workshop-${select.dataset.choiceGroup}`);
+                if ([...select.options].some(o => o.value && o.value === saved)) select.value = saved;
+            } catch (e) {}
+            select.addEventListener('change', update);
+        });
+        update();
     </script>
 </body>
 </html>
