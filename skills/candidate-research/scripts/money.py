@@ -50,6 +50,9 @@ DEFAULT_CANDIDATES = {
 
 FEC_API = "https://api.open.fec.gov/v1"
 
+# The FEC's regular website, where people can check the numbers themselves.
+FEC_WEBSITE = "https://www.fec.gov/data"
+
 
 def fec_get(path, params):
     """Ask the FEC API for `path` and return its JSON answer as a dictionary."""
@@ -69,6 +72,20 @@ def fec_get(path, params):
         stop(f"The FEC API returned an error ({error.code}).")
     except urllib.error.URLError:
         stop("Couldn't reach the FEC API. Check your internet connection.")
+
+
+def candidate_page(candidate_id):
+    """The candidate's page on fec.gov, like https://www.fec.gov/data/candidate/S6TX00388/"""
+    return f"{FEC_WEBSITE}/candidate/{candidate_id}/"
+
+
+def race_page(state, office, district=None):
+    """The race's page on fec.gov, like https://www.fec.gov/data/elections/senate/TX/2026/"""
+    if office == "president":
+        return f"{FEC_WEBSITE}/elections/president/{CYCLE}/"
+    if district:
+        return f"{FEC_WEBSITE}/elections/house/{state}/{district.zfill(2)}/{CYCLE}/"
+    return f"{FEC_WEBSITE}/elections/{office}/{state}/{CYCLE}/"
 
 
 def race_totals(state, office, district=None):
@@ -96,6 +113,7 @@ def race_totals(state, office, district=None):
             "spent": row["total_disbursements"],
             "cash_on_hand": row["cash_on_hand_end_period"],
             "through": row["coverage_end_date"],
+            "fec_page": candidate_page(row["candidate_id"]),
         }
         for row in results
         if row["total_receipts"]  # skip candidates who haven't raised anything
@@ -119,6 +137,7 @@ def candidate_totals(candidate_ids):
             "spent": row["disbursements"],
             "cash_on_hand": row["cash_on_hand_end_period"],
             "through": row["coverage_end_date"],
+            "fec_page": candidate_page(row["candidate_id"]),
         }
         for row in results
     ]
@@ -135,8 +154,8 @@ def money(amount):
     return f"${float(amount):,.0f}"
 
 
-def print_table(rows):
-    """Print one line per candidate."""
+def print_table(rows, race_link=None):
+    """Print one line per candidate, then links to check the numbers on fec.gov."""
     if not rows:
         print(f"No candidates with money raised were found for the {CYCLE} cycle.")
         return
@@ -150,6 +169,13 @@ def print_table(rows):
             f"{money(row['raised']):>14} {money(row['spent']):>14} {money(row['cash_on_hand']):>14}  {through}"
         )
     print(f"\nSource: FEC, {CYCLE} election cycle. 'Through' is the end date of each candidate's latest report.")
+
+    # Links back to the FEC website, so anyone can check where the numbers came from.
+    if race_link:
+        print(f"Race page: {race_link}")
+    print("Candidate pages:")
+    for row in rows:
+        print(f"  {row['name']}: {row['fec_page']}")
 
 
 def stop(message):
@@ -174,11 +200,12 @@ def main():
     args = parser.parse_args()
 
     if args.state and args.office:
-        rows = race_totals(args.state.upper(), args.office, args.district)
+        state = args.state.upper()
+        rows = race_totals(state, args.office, args.district)
+        print_table(rows, race_link=race_page(state, args.office, args.district))
     else:
         rows = candidate_totals(args.candidate_ids or list(DEFAULT_CANDIDATES))
-
-    print_table(rows)
+        print_table(rows)
 
 
 if __name__ == "__main__":

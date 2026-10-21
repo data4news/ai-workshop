@@ -159,6 +159,37 @@ If the script says the API key is missing or wasn't accepted, stop. Tell the use
                             <p>Try a race you care about, like your own state's Senate race or your House district. For a House race, include the state and district number, like "the Texas 21st district".</p>
                         </li>
                     </ol>
+                        <button type="button" class="next-step" data-next="step-4">Next: Step 4 →</button>
+                    </details>
+
+                    <details class="step" id="step-4" name="code-steps">
+                        <summary><h2>Step 4: Modify the skill</h2></summary>
+                    <ol>
+                        <li>
+                            <p>Right now the agent decides how to show the results. You can tell it exactly what you want in <code>SKILL.md</code>.</p>
+                            <p class="os-mac">In the <code>candidate-research</code> folder, right-click <code>SKILL.md</code> and choose <strong>Open With → TextEdit</strong>.</p>
+                            <p class="os-windows">In the <code>candidate-research</code> folder, right-click <code>SKILL.md</code> and choose <strong>Open with → Notepad</strong>.</p>
+                            <p class="os-linux">In the <code>candidate-research</code> folder, right-click <code>SKILL.md</code> and choose <strong>Open With → Text Editor</strong>.</p>
+                        </li>
+                        <li>
+                            <p>Add this to the end of the file, then save it:</p>
+                            <div class="code-block">
+                                <button type="button" class="copy-button">Copy</button>
+<pre><code>## How to show the results
+
+Show only a table with each candidate's name, party, money raised, money spent, cash on hand and the date the numbers run through. Don't add any analysis or commentary.
+
+Under the table, list the FEC links that the script prints, so readers can check the numbers on the FEC website.</code></pre>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Start a new chat and run it again:</p>
+                            <div class="code-block">
+<pre><code class="app-deepseek">/candidate-research Texas Senate Race</code><code class="app-chatgpt">$candidate-research Texas Senate Race</code><code class="app-claude">/candidate-research Texas Senate Race</code></pre>
+                            </div>
+                            <p>This time you should get just the table, with links to each candidate's page on the FEC website.</p>
+                        </li>
+                    </ol>
                     </details>
 
                     </div>
