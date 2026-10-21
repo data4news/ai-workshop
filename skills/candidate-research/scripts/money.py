@@ -148,16 +148,18 @@ def candidate_totals(candidate_ids):
 # ---------------------------------------------------------------------------
 
 def money(amount):
-    """Format a number of dollars, like 19497809.76 -> $19,497,810."""
+    """Format a number of dollars, like 19497809.76 -> $19,497,810 (or -$646 if it's negative)."""
     if amount is None:
         return "n/a"
-    return f"${float(amount):,.0f}"
+    amount = float(amount)
+    sign = "-" if amount < 0 else ""
+    return f"{sign}${abs(amount):,.0f}"
 
 
 def print_table(rows, race_link=None):
     """Print one line per candidate, then links to check the numbers on fec.gov."""
     if not rows:
-        print(f"No candidates with money raised were found for the {CYCLE} cycle.")
+        print(f"No matching candidates were found for the {CYCLE} cycle.")
         return
 
     print(f"{'Candidate':<30} {'Party':<20} {'Raised':>14} {'Spent':>14} {'Cash on hand':>14}  Through")
