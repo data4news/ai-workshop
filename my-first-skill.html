@@ -54,28 +54,28 @@
                             </div>
                         </li>
                         <li>
-                            <p>Inside <code>.agents</code>, make a new folder called <code>skills</code>. Inside <code>skills</code>, make one called <code>hello-world</code>. (If <code>skills</code> is already there, just open it.)</p>
+                            <p>Inside <code>.agents</code>, make a new folder called <code>skills</code>. Inside <code>skills</code>, make one called <code>greet-user</code>. (If <code>skills</code> is already there, just open it.)</p>
                             <p>You should end up with:</p>
                             <div class="code-block">
 <pre><code class="os-mac">Home
 └── .agents
     └── skills
-        └── hello-world</code><code class="os-windows">C:\Users\you
+        └── greet-user</code><code class="os-windows">C:\Users\you
 └── .agents
     └── skills
-        └── hello-world</code></pre>
+        └── greet-user</code></pre>
                             </div>
                         </li>
                         <li>
-                            <p><a class="download-link" href="skills/hello-world/SKILL.md" download="SKILL.md">Download SKILL.md</a>, then move it from your Downloads folder into the <code>hello-world</code> folder. Make sure it's named exactly <code>SKILL.md</code>, and not something like <code>SKILL (1).md</code>.</p>
+                            <p><a class="download-link" href="skills/greet-user/SKILL.md" download="SKILL.md">Download SKILL.md</a>, then move it from your Downloads folder into the <code>greet-user</code> folder. Make sure it's named exactly <code>SKILL.md</code>, and not something like <code>SKILL (1).md</code>.</p>
                             <p>Here's what's inside. The part between the two <code>---</code> lines gives the skill its name and description. Everything below it is the instructions.</p>
                             <div class="code-block">
 <pre><code>---
-name: hello-world
+name: greet-user
 description: Says hello to the user. Use when the user says hello or wants to test that skills are working.
 ---
 
-# Hello World
+# Greet User
 
 Reply with exactly this message:
 
@@ -91,7 +91,7 @@ Then, in one sentence, tell the user which file these instructions came from.</c
                             <div class="os-windows">
                                 <p>Close DeepSeek Harness and open it again, so it notices your new skill.</p>
                             </div>
-                            <p>Start a new chat, type <code>/hello-world</code> (or type <code>/</code> and pick <strong>hello-world</strong> from the list) and press Enter. You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
+                            <p>Start a new chat, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter. You should see a <strong>Skill</strong> row appear in the conversation, followed by the hello world message.</p>
                         </li>
                         <li>
                             <p>Now try it without the slash: type <strong>hello!</strong> and press Enter. The agent reads each skill's description, so it should pick up your skill on its own.</p>
@@ -103,7 +103,7 @@ Then, in one sentence, tell the user which file these instructions came from.</c
                             <div class="os-windows">
                                 <p>Make it yours. In File Explorer, right-click <code>SKILL.md</code> and choose <strong>Open with → Notepad</strong>.</p>
                             </div>
-                            <p>Change the hello message, save the file, and run <code>/hello-world</code> again. DeepSeek Harness re-reads the skill every time it's used, so your change shows up right away.</p>
+                            <p>Change the hello message, save the file, and run <code>/greet-user</code> again. DeepSeek Harness re-reads the skill every time it's used, so your change shows up right away.</p>
                         </li>
                     </ol>
                 </section>

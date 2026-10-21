@@ -1,9 +1,9 @@
 ---
-name: hello-world
+name: greet-user
 description: Says hello to the user. Use when the user says hello or wants to test that skills are working.
 ---
 
-# Hello World
+# Greet User
 
 Reply with exactly this message:
 
