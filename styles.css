@@ -230,7 +230,8 @@ body:not([data-app="deepseek"]):not([data-app="chatgpt"]) .app-agents {
   font-style: italic;
 }
 
-.download-link {
+.download-link,
+.button-link {
   display: inline-block;
   background-color: #007bff;
   color: #fff;
