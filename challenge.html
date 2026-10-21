@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge | AI Club Elections 2026 Workshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/shell.js" defer></script>
+    <script src="choices.js" defer></script>
+    <script src="steps.js" defer></script>
+    <script src="copy.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="layout">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="index.html">Intro</a></li>
+                    <li><a href="setup.html">Setup</a></li>
+                    <li><a href="my-first-skill.html">My First Skill</a></li>
+                    <li><a href="skills-with-code.html">Skills with Code</a></li>
+                    <li><a href="challenge.html" aria-current="page">Challenge</a></li>
+                </ul>
+            </nav>
+            <div class="content">
+                <section class="setup-instructions">
+                    <h1>Challenge</h1>
+                    <p>Add polling to your <strong>Candidate Research</strong> skill. When you ask about a race, it should also get the latest polling average from <a href="https://fiftyplusone.news/polls/senate/general/texas" target="_blank" rel="noopener noreferrer">FiftyPlusOne</a>.</p>
+                    <p>You won't write any code yourself. Your agent will look at the website, write a script called <code>polls.py</code> and update the skill.</p>
+
+                    <p class="choice-sentence">
+                        I'm using
+                        <select name="app" data-choice-group="app" autocomplete="off" aria-label="Your AI app" required>
+                            <option value="" selected disabled>choose an app</option>
+                            <option value="deepseek">DeepSeek Harness</option>
+                            <option value="chatgpt">ChatGPT Desktop App</option>
+                            <option value="claude">Claude Code Desktop App</option>
+                        </select>
+                        on
+                        <select name="os" data-choice-group="os" autocomplete="off" aria-label="Your computer" required>
+                            <option value="" selected disabled>choose a computer</option>
+                            <option value="mac">Mac</option>
+                            <option value="windows">Windows</option>
+                            <option value="linux">Linux</option>
+                        </select>
+                    </p>
+                    <p class="choose-prompt" data-prompt="app os">Pick both to see the steps.</p>
+
+                    <div class="instructions" data-needs="app os" hidden>
+
+                    <details class="step" id="step-1" name="challenge-steps" open>
+                        <summary><h2>Step 1: Ask your agent to add polls</h2></summary>
+                    <ol>
+                        <li>
+                            <p>Start a new chat and paste this in:</p>
+                            <div class="code-block">
+                                <button type="button" class="copy-button">Copy</button>
+<pre><code>I have a skill in ~/<span data-fill="folder">.agents</span>/skills/candidate-research. Add a script to it called scripts/polls.py that gets the most recent polling average for a race from FiftyPlusOne, like this page for the Texas Senate race: https://fiftyplusone.news/polls/senate/general/texas
+
+Look at the page first to work out where the numbers come from. Then write polls.py, run it to check that it works, and update SKILL.md so the skill uses polls.py when I ask about a race.</code></pre>
+                            </div>
+                        </li>
+                        <li>
+                            <p>The agent may ask permission to visit the website, create files or run the script. Allow it.</p>
+                        </li>
+                    </ol>
+                        <button type="button" class="next-step" data-next="step-2">Next: Step 2 →</button>
+                    </details>
+
+                    <details class="step" id="step-2" name="challenge-steps">
+                        <summary><h2>Step 2: Try it</h2></summary>
+                    <ol>
+                        <li>
+                            <p>Start a new chat and run:</p>
+                            <div class="code-block">
+<pre><code class="app-deepseek">/candidate-research Texas Senate Race</code><code class="app-chatgpt">$candidate-research Texas Senate Race</code><code class="app-claude">/candidate-research Texas Senate Race</code></pre>
+                            </div>
+                            <p>You should get the money table and the latest polling average.</p>
+                        </li>
+                        <li>
+                            <p>Open the <code>scripts</code> folder. Next to <code>money.py</code> there's now a <code>polls.py</code> that your agent wrote. Open it and see how it works.</p>
+                        </li>
+                    </ol>
+                    </details>
+
+                    </div>
+
+                    <p class="footnote">Instructions written by Dhrumil w/ Claude Code</p>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

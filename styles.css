@@ -149,6 +149,11 @@ main:has(> .layout) {
   font-size: 0.85em;
 }
 
+/* leave room for the Copy button so it doesn't cover the text */
+.code-block:has(.copy-button) pre {
+  padding-right: 80px;
+}
+
 .code-block .copy-button {
   position: absolute;
   top: 8px;
