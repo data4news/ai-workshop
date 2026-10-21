@@ -137,9 +137,9 @@ main:has(> .layout) {
   background-color: #2d2d2d;
   color: #f0f0f0;
   padding: 15px;
-  padding-right: 80px;
   border-radius: 5px;
   overflow-x: auto;
+  white-space: pre-wrap;
   line-height: 1.5;
 }
 
@@ -238,7 +238,47 @@ body:not([data-tool="claude"]) .tool-claude {
   text-decoration: none;
 }
 
-.setup-instructions h2 {
-  margin-top: 35px;
-  margin-bottom: 10px;
+/* Steps accordion: one <details> open at a time */
+details.step {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 15px 0;
+  padding: 0 20px;
+  scroll-margin-top: 110px; /* clear the fixed data4news.com top bar */
+}
+
+details.step[open] {
+  padding-bottom: 15px;
+}
+
+details.step summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 0;
+}
+
+details.step summary::-webkit-details-marker {
+  display: none;
+}
+
+details.step summary::before {
+  content: "▸";
+  color: #007bff;
+  transition: transform 0.2s ease;
+}
+
+details.step[open] summary::before {
+  transform: rotate(90deg);
+}
+
+details.step summary h2 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.next-step {
+  margin: 10px 0 0;
 }

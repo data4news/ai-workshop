@@ -49,7 +49,8 @@
                     <div class="instructions" hidden>
                     <p>Skills for <span data-fill="name">DeepSeek Harness</span> go in <code><span data-fill="folder">.agents</span>/skills</code> in your home folder, so that's where yours will go.</p>
 
-                    <h2>Step 1: Make the <code><span data-fill="folder">.agents</span>/skills</code> folder</h2>
+                    <details class="step" id="step-1" name="skill-steps" open>
+                        <summary><h2>Step 1: Make the <code><span data-fill="folder">.agents</span>/skills</code> folder</h2></summary>
                     <ol>
                         <li>
                             <p class="os-mac">Open <strong>Finder</strong>. In the menu bar, click <strong>Go → Home</strong>.</p>
@@ -84,8 +85,11 @@
                             </div>
                         </li>
                     </ol>
+                        <button type="button" class="next-step" data-next="step-2">Next: Step 2 →</button>
+                    </details>
 
-                    <h2>Step 2: Make a new skill folder inside <code>skills</code></h2>
+                    <details class="step" id="step-2" name="skill-steps">
+                        <summary><h2>Step 2: Make a new skill folder inside <code>skills</code></h2></summary>
                     <ol>
                         <li>
                             <p>Inside <code>skills</code>, make a new folder called <code>greet-user</code>.</p>
@@ -125,8 +129,11 @@ Then, in one sentence, tell the user which file these instructions came from.</c
                             </div>
                         </li>
                     </ol>
+                        <button type="button" class="next-step" data-next="step-3">Next: Step 3 →</button>
+                    </details>
 
-                    <h2>Step 3: Call the skill</h2>
+                    <details class="step" id="step-3" name="skill-steps">
+                        <summary><h2>Step 3: Call the skill</h2></summary>
                     <ol>
                         <li>
                             <p class="os-mac">Quit <span data-fill="app">DeepSeek Harness</span> (<strong>Command + Q</strong>) and open it again, so it notices your new skill.</p>
@@ -149,6 +156,7 @@ Then, in one sentence, tell the user which file these instructions came from.</c
                             <p>Change the hello message, save the file, and run the skill again. If your change doesn't show up, start a new chat.</p>
                         </li>
                     </ol>
+                    </details>
                     </div>
                 </section>
             </div>
@@ -160,6 +168,18 @@ Then, in one sentence, tell the user which file these instructions came from.</c
             chatgpt: { name: 'ChatGPT', app: 'ChatGPT', folder: '.codex' },
             claude: { name: 'Claude Code', app: 'the Claude app', folder: '.claude' },
         };
+        // Steps: one open at a time. The shared `name` does this in newer
+        // browsers; the toggle handler covers older ones.
+        const steps = document.querySelectorAll('details.step');
+        steps.forEach(step => step.addEventListener('toggle', () => {
+            if (step.open) steps.forEach(other => { if (other !== step) other.open = false; });
+        }));
+        document.querySelectorAll('.next-step').forEach(button => button.addEventListener('click', () => {
+            const next = document.getElementById(button.dataset.next);
+            next.open = true;
+            next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }));
+
         const selects = document.querySelectorAll('select[data-choice-group]');
         const instructions = document.querySelector('.instructions');
         const prompt = document.querySelector('.choose-prompt');
