@@ -21,6 +21,7 @@
                 <section class="setup-instructions">
                     <h1>Setup</h1>
                     <p>Follow the steps below to get started:</p>
+                    <h2>Set up DeepSeek Harness</h2>
                     <ol>
                         <li><a href="https://docs.google.com/document/d/1kdIxatE0avYBjBbv891IDIm7uNKoqBQml5idyzS8Ehw" target="_blank" rel="noopener noreferrer">Download the DeepSeek Harness</a></li>
                         <li>Open DeepSeek Harness and click <strong>Add API Key</strong> (not "Sign in").
@@ -28,6 +29,19 @@
                         </li>
                         <li>Paste in the API key <a href="https://docs.google.com/presentation/d/1hu6xweF-Z6dwTMaHpewER_o48u3-jIzr_SslTd25ebo/edit?slide=id.h5f6b19185d8fa531_0_403#slide=id.h5f6b19185d8fa531_0_403" target="_blank" rel="noopener noreferrer">provided by AI Club</a>, then click <strong>Save and continue</strong>.
                             <div><img src="images/enter-api-key.png" alt="DeepSeek Harness screen with an Enter API key field and a Save and continue button" width="400"></div>
+                        </li>
+                    </ol>
+
+                    <h2>Get an FEC API Key</h2>
+                    <p>We'll pull campaign finance data from the Federal Election Commission (FEC). Its API is free, but you need your own key.</p>
+                    <ol>
+                        <li>Go to the <a href="https://api.open.fec.gov/developers/" target="_blank" rel="noopener noreferrer">OpenFEC developer page</a> and find the <strong>Sign up for an API key</strong> form.</li>
+                        <li>Enter your name and email, agree to the terms, and click <strong>Sign up</strong>.</li>
+                        <li>Your key appears on the screen and is also emailed to you. Copy it somewhere safe, like a note on your computer. Don't post it anywhere public.</li>
+                        <li>Check that it works: copy the address below into your browser's address bar, replace <code>YOUR_KEY</code> at the end with your key, and press Enter. You should see a page of data about candidates named Smith. If you see an error mentioning <code>API_KEY_INVALID</code>, check that you copied the whole key.
+                            <div class="code-block">
+<pre><code>https://api.open.fec.gov/v1/candidates/search/?q=smith&amp;api_key=YOUR_KEY</code></pre>
+                            </div>
                         </li>
                     </ol>
                 </section>
