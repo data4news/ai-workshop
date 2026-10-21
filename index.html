@@ -6,6 +6,7 @@
     <title>AI Club Elections 2026 Workshop</title>
     <link rel="stylesheet" href="styles.css">
     <script src="/shell.js" defer></script>
+    <script src="choices.js" defer></script>
 </head>
 <body>
     <main>
@@ -21,6 +22,28 @@
                 <section>
                     <h1>AI Club Elections 2026 Workshop</h1>
                     <h2>Part 1 of 4: Repeated Research Tasks</h2>
+                </section>
+                <section class="choose-setup">
+                    <p>Which AI app will you use today, and on what kind of computer? The rest of the workshop pages will show steps for your setup.</p>
+                    <form action="setup.html" method="get">
+                        <p class="choice-sentence">
+                            I'm using
+                            <select name="app" data-choice-group="app" autocomplete="off" aria-label="Your AI app" required>
+                                <option value="" selected disabled>choose an app</option>
+                                <option value="deepseek">DeepSeek Harness</option>
+                                <option value="chatgpt">ChatGPT Desktop App</option>
+                                <option value="claude">Claude Code Desktop App</option>
+                            </select>
+                            on
+                            <select name="os" data-choice-group="os" autocomplete="off" aria-label="Your computer" required>
+                                <option value="" selected disabled>choose a computer</option>
+                                <option value="mac">Mac</option>
+                                <option value="windows">Windows</option>
+                                <option value="linux">Linux</option>
+                            </select>
+                        </p>
+                        <button type="submit">Go to Setup →</button>
+                    </form>
                 </section>
                 <section class="slides">
                     <p class="note">To see the slides, you'll need to be logged into your Columbia Gmail account in this browser.</p>

@@ -6,6 +6,7 @@
     <title>My First Skill | AI Club Elections 2026 Workshop</title>
     <link rel="stylesheet" href="styles.css">
     <script src="/shell.js" defer></script>
+    <script src="choices.js" defer></script>
 </head>
 <body>
     <main>
@@ -30,23 +31,23 @@
 
                     <p class="choice-sentence">
                         I'm using
-                        <select data-choice-group="tool" autocomplete="off" aria-label="Your AI app">
+                        <select name="app" data-choice-group="app" autocomplete="off" aria-label="Your AI app" required>
                             <option value="" selected disabled>choose an app</option>
-                            <option value="dsh">DeepSeek Harness</option>
+                            <option value="deepseek">DeepSeek Harness</option>
                             <option value="chatgpt">ChatGPT Desktop App</option>
                             <option value="claude">Claude Code Desktop App</option>
                         </select>
                         on
-                        <select data-choice-group="os" autocomplete="off" aria-label="Your computer">
+                        <select name="os" data-choice-group="os" autocomplete="off" aria-label="Your computer" required>
                             <option value="" selected disabled>choose a computer</option>
                             <option value="mac">Mac</option>
                             <option value="windows">Windows</option>
                             <option value="linux">Linux</option>
                         </select>
                     </p>
-                    <p class="choose-prompt">Pick both to see the steps.</p>
+                    <p class="choose-prompt" data-prompt="app os">Pick both to see the steps.</p>
 
-                    <div class="instructions" hidden>
+                    <div class="instructions" data-needs="app os" hidden>
                     <p>Skills for <span data-fill="name">DeepSeek Harness</span> go in <code><span data-fill="folder">.agents</span>/skills</code> in your home folder, so that's where yours will go.</p>
 
                     <details class="step" id="step-1" name="skill-steps" open>
@@ -64,8 +65,8 @@
                             <p>Press <strong>Shift + Command + . (period)</strong> to show hidden folders. Folders whose names start with a dot are hidden on a Mac, and they'll now appear faded.</p>
                         </li>
                         <li>
-                            <p class="tool-agents">If you see a <code>.agents</code> folder, open it. If not, make one:</p>
-                            <p class="tool-claude">Open the <code>.claude</code> folder. Claude Code makes it the first time you use it, so if it isn't there, open the Code tab in the Claude app once and check again. If it's still missing, make one:</p>
+                            <p class="app-agents">If you see a <code>.agents</code> folder, open it. If not, make one:</p>
+                            <p class="app-claude">Open the <code>.claude</code> folder. Claude Code makes it the first time you use it, so if it isn't there, open the Code tab in the Claude app once and check again. If it's still missing, make one:</p>
                             <p class="os-mac">Click <strong>File → New Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot). If Finder asks whether you're sure you want a name that begins with a dot, click <strong>Use "."</strong>.</p>
                             <p class="os-windows">Right-click an empty spot, choose <strong>New → Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot).</p>
                             <p class="os-linux">Right-click an empty spot, choose <strong>New Folder</strong> and name it <code data-fill="folder">.agents</code> (with the dot).</p>
@@ -140,9 +141,9 @@ Then, in one sentence, tell the user which file these instructions came from.</c
                             <p class="os-linux">Close <span data-fill="app">DeepSeek Harness</span> and open it again, so it notices your new skill.</p>
                         </li>
                         <li>
-                            <p class="tool-dsh">Start a new chat, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter.</p>
-                            <p class="tool-chatgpt">Start a new chat, type <code>$greet-user</code> and press Enter. In ChatGPT, you call a skill by name with a <code>$</code> in front of it.</p>
-                            <p class="tool-claude">Click <strong>Code</strong> to start a new Claude Code session, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter.</p>
+                            <p class="app-deepseek">Start a new chat, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter.</p>
+                            <p class="app-chatgpt">Start a new chat, type <code>$greet-user</code> and press Enter. In ChatGPT, you call a skill by name with a <code>$</code> in front of it.</p>
+                            <p class="app-claude">Click <strong>Code</strong> to start a new Claude Code session, type <code>/greet-user</code> (or type <code>/</code> and pick <strong>greet-user</strong> from the list) and press Enter.</p>
                             <p>You should get the hello world message back, along with the file it came from.</p>
                         </li>
                         <li>
@@ -163,48 +164,5 @@ Then, in one sentence, tell the user which file these instructions came from.</c
             </div>
         </div>
     </main>
-    <script>
-        const tools = {
-            dsh: { name: 'DeepSeek Harness', app: 'DeepSeek Harness', folder: '.agents' },
-            chatgpt: { name: 'ChatGPT', app: 'ChatGPT', folder: '.agents' },
-            claude: { name: 'Claude Code', app: 'the Claude app', folder: '.claude' },
-        };
-        // Steps: one open at a time. The shared `name` does this in newer
-        // browsers; the toggle handler covers older ones.
-        const steps = document.querySelectorAll('details.step');
-        steps.forEach(step => step.addEventListener('toggle', () => {
-            if (step.open) steps.forEach(other => { if (other !== step) other.open = false; });
-        }));
-        document.querySelectorAll('.next-step').forEach(button => button.addEventListener('click', () => {
-            const next = document.getElementById(button.dataset.next);
-            next.open = true;
-            next.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }));
-
-        const selects = document.querySelectorAll('select[data-choice-group]');
-        const instructions = document.querySelector('.instructions');
-        const prompt = document.querySelector('.choose-prompt');
-
-        function update() {
-            selects.forEach(select => {
-                const group = select.dataset.choiceGroup;
-                if (select.value) {
-                    document.body.dataset[group] = select.value;
-                }
-            });
-            const tool = tools[document.body.dataset.tool];
-            if (tool) {
-                document.querySelectorAll('[data-fill]').forEach(el => {
-                    el.textContent = tool[el.dataset.fill];
-                });
-            }
-            const ready = [...selects].every(select => select.value);
-            instructions.hidden = !ready;
-            prompt.hidden = ready;
-        }
-
-        selects.forEach(select => select.addEventListener('change', update));
-        update();
-    </script>
 </body>
 </html>

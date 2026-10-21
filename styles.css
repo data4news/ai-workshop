@@ -194,14 +194,14 @@ main:has(> .layout) {
   }
 }
 
-/* Dropdowns: body[data-os] and body[data-tool] hide the steps for the other choices */
+/* Dropdowns (choices.js): body[data-app] and body[data-os] hide the steps for the other choices */
 body:not([data-os="mac"]) .os-mac,
 body:not([data-os="windows"]) .os-windows,
 body:not([data-os="linux"]) .os-linux,
-body:not([data-tool="dsh"]) .tool-dsh,
-body:not([data-tool="chatgpt"]) .tool-chatgpt,
-body:not([data-tool="claude"]) .tool-claude,
-body:not([data-tool="dsh"]):not([data-tool="chatgpt"]) .tool-agents {
+body:not([data-app="deepseek"]) .app-deepseek,
+body:not([data-app="chatgpt"]) .app-chatgpt,
+body:not([data-app="claude"]) .app-claude,
+body:not([data-app="deepseek"]):not([data-app="chatgpt"]) .app-agents {
   display: none !important;
 }
 
@@ -290,4 +290,23 @@ details.step summary h2 {
   border-top: 1px solid #ddd;
   font-size: 0.85em;
   color: #777;
+}
+
+.choose-setup form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+}
+
+.choose-setup .choice-sentence {
+  margin: 0;
+}
+
+.choose-setup button {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
 }
